@@ -11,15 +11,29 @@
       <van-tab title="已完成">
       </van-tab>
     </van-tabs>
+    {{orders}}
+    <!-- <briup-order-item :data="orders"> -->
+    <!-- </briup-order-item> -->
   </div>
 </template>
 <script>
+import {mapActions,mapState} from 'vuex'
 export default {
   data(){
     return {
       active:0,
+      form:{}
     }
   },
+  computed:{
+    ...mapState('order',['orders'])
+  },
+  created(){
+    this.findOrder()
+  },
+  methods:{
+    ...mapActions('order',['findOrder'])
+  }
 }
 </script>
 <style scoped>
