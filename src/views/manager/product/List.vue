@@ -9,40 +9,31 @@
         </van-col>
         <!-- 右侧该栏目下的产品 -->
         <van-col span="18">
-          <div class="productItem" v-for="item in productDetail" :key="item.id">
-            <div class="productImg">
-              <img v-if="item.photo" :src="item.photo" alt="">
-              <img v-else src="../../../assets/service.png" alt="">
-            </div>
-            <div class="productDesc">
-              <div>名称：{{item.name}}</div>
-              <div>描述：{{item.description}}</div>
-              <div>价格：￥{{item.price}}</div>
-              <van-stepper v-model="value" />
-            </div>
-          </div>
+          <briup-product-item v-for="item in productDetail" :key="item.id" :data="item">
+          
+          </briup-product-item>
         </van-col>
       </van-row>
       <!-- 总额 -->
       <div class="confirmDiv">
-        <div>总额：￥</div>
+        <div>总额：￥{{total}}</div>
         <div class="makeSureDiv">立即预约</div>
       </div>
     </briup-fulllayout>
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex';
+import {mapState,mapGetters,mapActions} from 'vuex';
 export default {
   data(){
     return {
       activeKey: this.$route.query.key,
-      value:1
     }
   },
   computed:{
     ...mapState('home',['products','categories']),
-    ...mapState('product',['productDetail'])
+    ...mapState('product',['productDetail']),
+    ...mapGetters('shopCar',['total'])
   },
   created(){
     this.findCategory()
@@ -54,6 +45,9 @@ export default {
     // 左侧切换分类
     switchProduct(id){
       this.findProductById(id)
+    },
+    addNum(item){
+      console.log(item)
     }
   }
 }
