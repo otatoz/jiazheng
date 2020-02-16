@@ -1,4 +1,4 @@
-import {get} from '../../http/axios'
+import {get, post,post_obj_array} from '../../http/axios'
 export default{
     namespaced:true,
     state:{
@@ -15,6 +15,9 @@ export default{
             
             let res = await get('/order/query',params)
             context.commit('refreshOrder',res.data)
+        },
+        async saveOrder(context,params){
+            let res = await post_obj_array('/order/save',params)
         }
     }
 }

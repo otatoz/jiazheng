@@ -8,6 +8,7 @@ import home from './modules/home'
 import product from './modules/product'
 import order from './modules/order'
 import shopCar from "./modules/shopCar"
+import address from './modules/address'
 
 export default new Vuex.Store({
   modules:{
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     home,
     product,
     order,
-    shopCar
+    shopCar,
+    address
   }
 })

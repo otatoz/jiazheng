@@ -17,7 +17,7 @@
       <!-- 总额 -->
       <div class="confirmDiv">
         <div>总额：￥{{total}}</div>
-        <div class="makeSureDiv">立即预约</div>
+        <div class="makeSureDiv" @click="toOrderConform">立即预约</div>
       </div>
     </briup-fulllayout>
 </template>
@@ -36,7 +36,9 @@ export default {
     ...mapGetters('shopCar',['total'])
   },
   created(){
+    // 查询所有栏目
     this.findCategory()
+    // 根据栏目id切换产品
     this.findProductById(this.$route.query.id)
   },
   methods:{
@@ -46,8 +48,12 @@ export default {
     switchProduct(id){
       this.findProductById(id)
     },
-    addNum(item){
-      console.log(item)
+
+    // 跳转至订单确认页面
+    toOrderConform(){
+      this.$router.push({
+        path:'order_conform'
+      })
     }
   }
 }

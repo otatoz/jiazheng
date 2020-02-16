@@ -30,7 +30,8 @@ export default {
       let orderLine  = {
         productId:val.id,
         number:val.number,
-        price:val.price
+        price:val.price,
+        name:val.name
       }
       this.addShopCar(orderLine)
     }
